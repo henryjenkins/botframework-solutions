@@ -397,8 +397,6 @@ namespace PhoneSkill.Dialogs
                     };
                     var response = ResponseManager.GetResponse(OutgoingCallResponses.ContactHasNoPhoneNumber, tokens);
                     await context.SendActivityAsync(response);
-
-                    return false;
                 }
                 else
                 {
@@ -408,9 +406,10 @@ namespace PhoneSkill.Dialogs
                     };
                     var response = ResponseManager.GetResponse(OutgoingCallResponses.ContactsHaveNoPhoneNumber, tokens);
                     await context.SendActivityAsync(response);
-
-                    return false;
                 }
+
+                state.ContactResult.SearchQuery = string.Empty;
+                return false;
             }
 
             if (state.ContactResult.SearchQuery.Any())

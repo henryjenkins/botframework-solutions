@@ -264,6 +264,8 @@ namespace PhoneSkillTest.Flow
                    { "contact", "Christina Botter" },
                }))
                .AssertReply(Message(OutgoingCallResponses.RecipientPrompt))
+               .Send(OutgoingCallUtterances.OutgoingCallNoEntities) // Test that "Christina Botter" was completely removed from the state.
+               .AssertReply(Message(OutgoingCallResponses.RecipientPrompt))
                .Send(OutgoingCallUtterances.RecipientContactName)
                .AssertReply(Message(OutgoingCallResponses.ExecuteCall, new StringDictionary()
                {
@@ -288,6 +290,8 @@ namespace PhoneSkillTest.Flow
                {
                    { "contactName", "christina" },
                }))
+               .AssertReply(Message(OutgoingCallResponses.RecipientPrompt))
+               .Send(OutgoingCallUtterances.OutgoingCallNoEntities) // Test that "christina" was completely removed from the state.
                .AssertReply(Message(OutgoingCallResponses.RecipientPrompt))
                .Send(OutgoingCallUtterances.RecipientContactName)
                .AssertReply(Message(OutgoingCallResponses.ExecuteCall, new StringDictionary()
